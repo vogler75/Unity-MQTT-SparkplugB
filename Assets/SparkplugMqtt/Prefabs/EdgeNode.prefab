@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3243217803924237863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5534736126327180983}
+  - component: {fileID: 267235537904696905}
+  - component: {fileID: 8825705927353530441}
+  - component: {fileID: 7719317512431498363}
+  - component: {fileID: 6886208533354624166}
+  m_Layer: 0
+  m_Name: EdgeNode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5534736126327180983
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3243217803924237863}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &267235537904696905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3243217803924237863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07f93c4f7a57469ab2e0b60b3920831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GroupId: 
+  EdgeNodeId: 
+  PrimaryHostId: 
+  UseAlias: 0
+  ConnectFlag: 0
+  ConnectState: 0
+  PublishChangedDataFlag: 0
+--- !u!114 &8825705927353530441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3243217803924237863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8fc4a343fe5454cabcefa70516d321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClientId: 
+  Host: 
+  Port: 1883
+  Username: 
+  Password: 
+  Websocket: 0
+  WebsocketPath: /mqtt
+  UseTLS: 0
+  AllowUntrusted: 0
+  CleanSession: 1
+  ConnectTimeoutInSeconds: 3
+  ReconnectInSeconds: 5
+  DebugMessages: 1
+  BirthTopic: 
+  BirthMessage: Online
+  BirthQualityOfService: 0
+  BirthRetain: 1
+  WillTopic: 
+  WillMessage: Offline
+  WillQualityOfService: 0
+  WillRetain: 1
+  WillOnDisconnect: 1
+  ConnectFlag: 1
+  ConnectState: 0
+  ReconnectTimer: 0
+  SubscribeQOS: 0
+  SubscribeTopics: []
+  OnConnected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDisconnected:
+    m_PersistentCalls:
+      m_Calls: []
+  BeforeDisconnected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMessageArrived:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMessageArrivedInUiThread: 1
+--- !u!114 &7719317512431498363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3243217803924237863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca33a5a40c82ea4196338e302b5a365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Config: {fileID: 0}
+--- !u!114 &6886208533354624166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3243217803924237863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b76f4b72a59130478efd42f71dd6181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Config: {fileID: 0}
