@@ -6,25 +6,26 @@ using UnityEngine;
 
 namespace Rocworks.Mqtt.SparkplugB
 {
-    public class EdgeNodeConsumer : EdgeConsumer
-    {
+    public class EdgeDeviceConsumer : EdgeConsumer
+    {        
         [Header("Configuration")]
         public string GroupId = "";
         public string EdgeNodeId = "";
+        public string DeviceId = "";
         public bool CreateObjects = true;
 
         override public string GetName()
         {
-            return GroupId + "/" + EdgeNodeId;
+            return GroupId + "/" + EdgeNodeId + "/" + DeviceId;
         }
 
         override public string GetTopic(MessageType messageType) {
-            return Common.NAMESPACE + "/" + GroupId + "/" + messageType.ToString() + "/" + EdgeNodeId;
+            return Common.NAMESPACE + "/" + GroupId + "/" + messageType.ToString() + "/" + EdgeNodeId + "/" + DeviceId;
         }
 
         public override string GetCmdTopic()
         {
-            return Common.NAMESPACE + "/" + GroupId + "/" + MessageType.NCMD + "/" + EdgeNodeId;
+            return Common.NAMESPACE + "/" + GroupId + "/" + MessageType.DCMD + "/" + EdgeNodeId + "/" + DeviceId;
         }
 
         public override bool GetCreateObjects()
@@ -35,14 +36,19 @@ namespace Rocworks.Mqtt.SparkplugB
         // Start is called before the first frame update
         void Start()
         {           
-            if (EdgeNodeId == "")
-            {
-                EdgeNodeId = gameObject.name;
-            }
-
             if (GroupId == "")
             {
                 GroupId = Application.companyName;
+            }
+
+            if (EdgeNodeId == "")
+            {
+                EdgeNodeId = gameObject.name;
+            }            
+
+            if (DeviceId == "")
+            {
+                DeviceId = gameObject.name;
             }
         }
 
@@ -55,12 +61,12 @@ namespace Rocworks.Mqtt.SparkplugB
         override public void OnMessageArrived(MessageType messageType, Payload payload)
         {
             switch (messageType)
-            {
-                case MessageType.NBIRTH: 
+            {                   
+                case MessageType.DBIRTH: 
                     BirthMessage(payload); break;
-                case MessageType.NDATA: 
-                case MessageType.NDEATH: 
-                    DataMessage(payload); break;                  
+                case MessageType.DDATA: 
+                case MessageType.DDEATH: 
+                    DataMessage(payload); break;                    
             }
         }
     }

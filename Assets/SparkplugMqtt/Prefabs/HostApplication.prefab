@@ -51,6 +51,7 @@ MonoBehaviour:
   ConnectFlag: 0
   ConnectState: 0
   PublishChangedDataFlag: 0
+  DebugMessages: 0
 --- !u!114 &6920448517013179910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +76,7 @@ MonoBehaviour:
   CleanSession: 1
   ConnectTimeoutInSeconds: 3
   ReconnectInSeconds: 5
-  DebugMessages: 1
+  DebugMessages: 0
   BirthTopic: 
   BirthMessage: Online
   BirthQualityOfService: 0
@@ -85,7 +86,7 @@ MonoBehaviour:
   WillQualityOfService: 0
   WillRetain: 1
   WillOnDisconnect: 1
-  ConnectFlag: 1
+  ConnectFlag: 0
   ConnectState: 0
   ReconnectTimer: 0
   SubscribeQOS: 0

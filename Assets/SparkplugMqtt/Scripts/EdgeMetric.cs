@@ -11,11 +11,12 @@ namespace Rocworks.Mqtt.SparkplugB
         public string Name = "";
         public bool HasAlias = false;
         public ulong Alias = 0;
-        public string Value = "";
+        public string ValueAsString = "";
+        public bool ApplyFromString = false;
+        public bool Changed = false;
 
         private IMetricHandler MetricHandler = null;
 
-        private string OldValue = "";
 
         // Start is called before the first frame update
         void Start()
@@ -47,14 +48,16 @@ namespace Rocworks.Mqtt.SparkplugB
         // Update is called once per frame
         void Update()
         {
-            if (Value != OldValue)
+            if (ApplyFromString)
             {
-                SetFromString(Value);
+                ApplyFromString = false;
+                SetFromString(ValueAsString);
             }
         }
 
         public void SetFromString(string value)
         {
+            Debug.Log("SetFromString: " + Name + " = " + value);
             try
             {
                 switch (Type)
@@ -87,18 +90,19 @@ namespace Rocworks.Mqtt.SparkplugB
                     case DataType.String:
                     case DataType.Text:
                         MetricHandler.SetMetricValue(Name, value);
-                        break;
+                        break;                        
                     default:
-                        throw new Exception("Unsupported metric value type!");
+                        throw new Exception("Unhandled data type '" + Type + "'!");
                 }
             }
             catch (Exception e)
             {
-                Debug.LogError("Error setting metric value: " + e.Message + " (" + e.GetType().ToString() + ")");
+                Debug.LogError("Error setting metric '"+Name+"' value: " + e.Message + " (" + e.GetType().ToString() + ")");
             }
             finally
             {
-                Value = OldValue = value;
+                ValueAsString = value;
+                Changed = true;
             }
         }
 
@@ -143,10 +147,14 @@ namespace Rocworks.Mqtt.SparkplugB
                 case DataType.Text:
                     value = metric.StringValue.ToString();
                     break;
+                case DataType.Template:
+                    value = metric.TemplateValue.ToString();
+                    break;
                 default:
-                    throw new Exception("Unsupported metric value type!");
+                    throw new Exception("Unhandled data type '" + Type + "'!");
             }                        
-            Value = OldValue = value;
+            ValueAsString = value;
+            //Debug.Log(metric.Name + " = " + value);
         }
 
         public Payload.Types.Metric GetMetric()

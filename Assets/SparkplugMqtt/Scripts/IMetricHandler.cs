@@ -12,6 +12,7 @@ namespace Rocworks.Mqtt.SparkplugB
         List<Payload.Types.Metric> GetMetrics();
         Payload.Types.Metric GetMetric(string name);
         Payload.Types.Metric GetMetric(ulong alias);
+
         public List<Payload.Types.Metric> GetChangedMetrics();
         public void ClearChangedMetrics();
 
