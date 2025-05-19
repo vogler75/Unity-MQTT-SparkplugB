@@ -4,6 +4,7 @@ using Google.Protobuf;
 using Org.Eclipse.Tahu.Protobuf;
 using System.Collections.Generic;
 using static Unity.VisualScripting.Member;
+using System.Collections;
 
 namespace Rocworks.Mqtt.SparkplugB
 {
@@ -23,6 +24,7 @@ namespace Rocworks.Mqtt.SparkplugB
         private long _birthTimestamp = 0;
         private ulong _seq = 0;
         private bool _subscribed = false;
+        private bool _birthSent = false;
 
         private Dictionary<string, EdgeNodeConsumer> _edgeNodes = new();
         private Dictionary<string, EdgeDeviceConsumer> _edgeDevices = new();
@@ -71,7 +73,7 @@ namespace Rocworks.Mqtt.SparkplugB
                     SubscribeEdgeDevice(edgeDevice);                    
                 }
                 _subscribed = true;
-                SendBirthMessage();
+                _birthSent = false;
             });
 
             // Before Disconnected Event
@@ -103,7 +105,18 @@ namespace Rocworks.Mqtt.SparkplugB
             {
                 PublishChangedDataFlag = false;
                 PublishChangedData();
+            }       
+            if (_subscribed && !_birthSent)
+            {
+                _birthSent = true;
+                StartCoroutine(DoBirthAfterDelay());
             }
+        }
+
+        private IEnumerator DoBirthAfterDelay()
+        {
+            yield return new WaitForSeconds(1f); // wait 1 second
+            SendBirthMessage();
         }
 
         private string GetTopic(MessageType messageType)

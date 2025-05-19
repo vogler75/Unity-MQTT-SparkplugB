@@ -24,15 +24,16 @@ namespace Rocworks.Mqtt.SparkplugB
                     if (!HasMetric(metric.Name))
                     {
                         AddMetric(metric);
-                        if (GetCreateObjects()) {
+                        if (GetCreateObjects()) 
+                        {
                             NewMetricObject(metric);
                             UpdateMetricObject(metric);
                         }
                     }
                     else
                     {
-                        if (GetCreateObjects()) 
-                            UpdateMetricObject(metric);
+                        //Debug.Log(metric);
+                        UpdateMetricObject(metric);
                     }
                 } 
                 else

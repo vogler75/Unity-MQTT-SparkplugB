@@ -132,7 +132,7 @@ namespace Rocworks.Mqtt.SparkplugB
                     value = metric.IntValue.ToString();
                     break;
                 case DataType.Int64:
-                    value = metric.LongValue.ToString();
+                    value = ((long)metric.LongValue).ToString();
                     break;
                 case DataType.Uint64:
                     value = metric.LongValue.ToString();
